@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Frame Predictions</title>
+</head>
+<body>
+    <h1>Video Frame Predictions</h1>
+    <div>
+        <h2>Predictions for each Frame:</h2>
+        <ul>
+            {% for prediction in predictions %}
+                <li>{{ prediction }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
