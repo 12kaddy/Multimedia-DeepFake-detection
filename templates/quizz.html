@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepfake Quiz</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #3494E6, #EC6EAD);
+            color: #0f0e0e;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #quiz-container {
+            max-width: 600px;
+            background-color: rgba(232, 224, 224, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #question-container {
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #56CCF2, #2F80ED);
+            border: none;
+            color: #fdf9f9;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #2F80ED, #56CCF2);
+        }
+
+        button:disabled {
+            background: #0b0b0b;
+            cursor: not-allowed;
+        }
+
+        #options button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 15px;
+            border: none;
+            background: linear-gradient(135deg, #45B649, #DCE35B);
+            color: #010101;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        #options button:hover {
+            background: linear-gradient(135deg, #DCE35B, #45B649);
+        }
+
+        #options button:disabled {
+            background: #f7f4f4;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+<div id="quiz-container">
+    <h1>Deepfake Quiz</h1>
+    
+    <div id="question-container">
+        <strong id="question"></strong>
+        <div id="options"></div>
+    </div>
+    
+    <button onclick="nextQuestion()">Next Question</button>
+</div>
+
+<script>
+    const questions = [
+        {
+            question: "What is the technology behind deepfakes called?",
+            options: ["Artificial Intelligence", "Deep learning or GANs"],
+            correctAnswer: "Deep learning or GANs"
+        },
+        {
+            question: "Can deepfakes be used for anything good?",
+            options: ["No, they are always harmful", "Yes, for educational and entertainment purposes"],
+            correctAnswer: "Yes, for educational and entertainment purposes"
+        },
+        {
+            question: "What is the main concern about deepfakes?",
+            options: ["Overpopulation", "Misinformation, spreading fake news, and damaging reputations"],
+            correctAnswer: "Misinformation, spreading fake news, and damaging reputations"
+        }
+    ];
+
+    let currentQuestionIndex = 0;
+
+    function showQuestion() {
+        const questionContainer = document.getElementById("question-container");
+        const optionsContainer = document.getElementById("options");
+
+        const currentQuestion = questions[currentQuestionIndex];
+        document.getElementById("question").textContent = currentQuestion.question;
+
+        optionsContainer.innerHTML = "";
+
+        currentQuestion.options.forEach((option, index) => {
+            const optionButton = document.createElement("button");
+            optionButton.textContent = option;
+            optionButton.onclick = () => checkAnswer(option);
+            optionsContainer.appendChild(optionButton);
+        });
+    }
+
+    function checkAnswer(selectedAnswer) {
+        const currentQuestion = questions[currentQuestionIndex];
+
+        if (selectedAnswer === currentQuestion.correctAnswer) {
+            alert("Hurray! Your answer is correct!");
+        } else {
+            alert(`Oops! Your answer is incorrect. The correct answer is: ${currentQuestion.correctAnswer}`);
+        }
+
+        // Disable further interaction with this question
+        disableQuestion();
+    }
+
+    function disableQuestion() {
+        const options = document.getElementById("options").querySelectorAll('button');
+        options.forEach(option => option.disabled = true);
+    }
+
+    function nextQuestion() {
+        currentQuestionIndex++;
+
+        if (currentQuestionIndex < questions.length) {
+            showQuestion();
+        } else {
+            alert("Quiz completed!");
+            // You can implement quiz completion logic here
+        }
+    }
+
+    // Start the quiz
+    showQuestion();
+</script>
+
+</body>
+</html>
