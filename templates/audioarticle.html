@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audio Deepfake Blog</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      color: #ffffff;
+      transition: background-color 0.5s ease;
+    }
+
+    .image-container {
+      overflow: hidden;
+      height: 300px; /* Adjust the fixed height as needed */
+      border-radius: 10px;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .blog-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .blog-title {
+      font-size: 36px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .blog-content {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      color: #ffffff;
+    }
+
+    .toggle-mode-btn {
+      margin-top: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      background-color: #007bff;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+    }
+
+    .dark-mode {
+      background-color: #1a1a1a;
+    }
+  </style>
+</head>
+<body>
+  <div class="image-container">
+    <img src="audioarticle.jpg" alt="Audio Article Image">
+  </div>
+
+  <div id="root" class="blog-container">
+    <div class="blog-title">Understanding Audio Deepfake</div>
+    <div class="blog-content">
+      <p>
+        Audio deepfake is a technique that uses artificial intelligence to create realistic-sounding
+        fake audio content. It involves training a model with vast amounts of data and then using
+        that model to generate audio that mimics a specific voice or style.
+      </p>
+      <p>
+        The process typically involves deep learning algorithms, which learn patterns and nuances
+        from the input data. As a result, deepfake audio can be difficult to distinguish from
+        authentic recordings.
+      </p>
+      <p>
+        It's crucial to be aware of the potential misuse of audio deepfake technology, as it can
+        be used to create misleading content or impersonate individuals.
+      </p>
+      <p>
+        In some cases, audio deepfakes are used for voice impersonation, where the attacker mimics the voice of a specific individual. This can be employed for fraudulent activities, such as creating fake voice recordings for impersonating authority figures or manipulating audio messages for malicious purposes.
+      </p>
+    </div>
+    <div class="footer">© 2024 Audio Deepfake Blog</div>
+  </div>
+
+  <button id="toggleModeBtn" class="toggle-mode-btn"><i class="fas fa-adjust"></i></button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <script>
+    const toggleModeBtn = document.getElementById('toggleModeBtn');
+    const body = document.body;
+
+    toggleModeBtn.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+    });
+  </script>
+</body>
+</html>

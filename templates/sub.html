@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deepfake Check - Upload Files</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background-color: #f8f9fa; /* Light Gray */
+    }
+
+    .container {
+      margin-top: 50px;
+    }
+
+    .upload-section {
+      margin-bottom: 30px;
+      padding: 20px;
+      background-color: #ffffff; /* White */
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .upload-section:hover {
+      transform: scale(1.05);
+    }
+
+    .custom-file-input {
+      color: white;
+    }
+
+    .btn-upload {
+      background-color: #007BFF; /* Blue */
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-upload:hover {
+      background-color: #0056b3;
+    }
+
+    .btn-reset {
+      background-color: #ffc107; /* Yellow */
+      color: #343a40; /* Dark Gray */
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-reset:hover {
+      background-color: #e0a800;
+    }
+
+    .terms {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #343a40; /* Dark Gray */
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h1 class="mb-4">Deepfake Check - Upload Files</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="upload-section">
+        <h2 class="text-center mb-4">Upload Image</h2>
+        <form id="imageUploadForm" class="media-upload-form" action="/result/image" method="post">
+          <!-- Add hidden input for file type -->
+          <input type="hidden" name="fileType" value="image">
+          <div class="form-group">
+            <label for="imageInput">Choose Image:</label>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="imageInput" name="media" accept="image/*" required multiple>
+              <label class="custom-file-label" for="imageInput">Select image</label>
+            </div>
+          </div>
+          <div class="form-group text-center">
+            <button type="submit" class="btn btn-upload btn-lg btn-block">Upload</button>
+            <button type="button" class="btn btn-reset btn-lg btn-block" onclick="resetForm('imageUploadForm')">Reset</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="upload-section">
+        <h2 class="text-center mb-4">Upload Video</h2>
+        <form id="videoUploadForm" class="media-upload-form" action="/result/video" method="post">
+          <!-- Add hidden input for file type -->
+          <input type="hidden" name="fileType" value="video">
+          <div class="form-group">
+            <label for="videoInput">Choose Video:</label>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="videoInput" name="media" accept="video/*" required multiple>
+              <label class="custom-file-label" for="videoInput">Select video</label>
+            </div>
+          </div>
+          <div class="form-group text-center">
+            <button type="submit" class="btn btn-upload btn-lg btn-block">Upload</button>
+            <button type="button" class="btn btn-reset btn-lg btn-block" onclick="resetForm('videoUploadForm')">Reset</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="upload-section">
+        <h2 class="text-center mb-4">Upload Audio</h2>
+        <form id="audioUploadForm" class="media-upload-form" action="/result/audio" method="post">
+          <!-- Add hidden input for file type -->
+          <input type="hidden" name="fileType" value="audio">
+          <div class="form-group">
+            <label for="audioInput">Choose Audio:</label>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="audioInput" name="media" accept="audio/*" required multiple>
+              <label class="custom-file-label" for="audioInput">Select audio</label>
+            </div>
+          </div>
+          <div class="form-group text-center">
+            <button type="submit" class="btn btn-upload btn-lg btn-block">Upload</button>
+            <button type="button" class="btn btn-reset btn-lg btn-block" onclick="resetForm('audioUploadForm')">Reset</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="terms text-center">
+  <p>By uploading files, you agree to the <a href="#terms">Terms and Conditions</a>.</p>
+</div>
+
+<!-- Bootstrap JS and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Custom JavaScript -->
+<script>
+  function resetForm(formId) {
+    document.getElementById(formId).reset();
+    document.querySelector(`#${formId} .custom-file-label`).textContent = "Select file";
+  }
+
+  // Update the displayed file name in the custom-file-label
+  document.querySelectorAll(".custom-file-input").forEach(input => {
+    input.addEventListener("change", function () {
+      var fileName = this.files[0].name;
+      var label = this.nextElementSibling;
+      label.textContent = fileName;
+    });
+  });
+</script>
+
+</body>
+</html>

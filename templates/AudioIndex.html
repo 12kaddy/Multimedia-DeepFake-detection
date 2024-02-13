@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Classification App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-top: 20px;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Audio Classification App</h1>
+    
+    <form id="uploadForm" enctype="multipart/form-data">
+        <label for="audioFile">Upload Audio File:</label>
+        <input type="file" name="audioFile" accept=".wav, .mp3" required>
+        <br>
+        <button type="button" onclick="predict()">Predict</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        function predict() {
+            var form = document.getElementById('uploadForm');
+            var formData = new FormData(form);
+
+            fetch('/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                var resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = 'Prediction Result: ' + data.result;
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

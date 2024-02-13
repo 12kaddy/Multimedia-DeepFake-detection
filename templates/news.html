@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deepfake News</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background-color: #f5f5f5; /* Light Gray background */
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .card {
+      background-color: #fff; /* White background */
+      border: none;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeIn 0.8s forwards;
+    }
+
+    .card-title {
+      color: #2196f3; /* Blue text */
+    }
+
+    .card-text {
+      color: #333; /* Dark Gray text */
+    }
+
+    .btn-primary {
+      background-color: #ff4081; /* Pink button */
+      color: #fff; /* White text */
+    }
+
+    .btn-icon {
+      font-size: 20px;
+      margin-right: 5px;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<!-- React JS -->
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<!-- Babel compiler for React -->
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+<script type="text/babel">
+  class DeepfakeNewsPage extends React.Component {
+    render() {
+      const newsItems = [
+        {
+          title: "Government Crackdown",
+          content: "The Indian government is planning to introduce regulations for deepfakes within 7-10 days, requiring social media platforms to take down harmful content and users to report violations easily. This follows concerns about misinformation and potential misuse during elections.",
+        },
+        {
+          title: "Financial Scams",
+          content: "A new report from the New York Times highlights the rise of voice deepfakes in financial scams. Scammers are impersonating executives or bank personnel to trick victims into transferring money. This raises anxieties about future vulnerabilities in financial systems.",
+        },
+        {
+          title: "Deepfake 'Celebrities'",
+          content: "Taylor Swift fans were targeted by deepfake ads promoting cookware brand Le Creuset. These realistic videos illustrate the potential for impersonation and deceptive marketing.",
+        },
+        {
+          title: "Technological Advancements",
+          content: "The increasing ease and sophistication of deepfake technology is becoming a growing concern. Zerodha CEO Nithin Kamath highlighted the potential threat of deepfakes in authentication processes like video KYC in the future.",
+        },
+        {
+          title: "Global Concerns",
+          content: "The World Economic Forum's Global Cybersecurity Outlook report identified deepfakes as a major risk, along with AI advancements, that could exacerbate misinformation and cybercrime.",
+        },
+        {
+          title: "International Misuse",
+          content: "Deepfakes were used to influence voters in elections across various countries, including India and Indonesia, showcasing the potential for political manipulation.",
+        },
+        {
+          title: "Detection and Verification Tools",
+          content: "Research and development efforts are underway to develop tools for deepfake detection and verification. Companies like YouTube are implementing new policies to tackle the spread of harmful deepfakes.",
+        },
+      ];
+
+      return (
+        <div className="container mt-5">
+          <h1 className="text-center mb-4">Recent Deepfake News</h1>
+          {newsItems.map((item, index) => (
+            <div key={index} className="card">
+              <div className="card-body">
+                <h5 className="card-title">
+                  <span className="btn-icon" role="img" aria-label="Icon">📰</span>
+                  {item.title}
+                </h5>
+                <p className="card-text">{item.content}</p>
+                <a href="#learn-more" className="btn btn-primary">
+                  <span className="btn-icon" role="img" aria-label="Icon">➔</span>Learn More
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      );
+    }
+  }
+
+  ReactDOM.render(<DeepfakeNewsPage />, document.getElementById('root'));
+</script>
+
+</body>
+</html>
